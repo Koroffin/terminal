@@ -41,7 +41,10 @@ export class TerminalFiles {
     }
   }
   public static ls(): string[] {
-    const res: string[] = [];
+    const res: string[] = ['.'];
+    if (this.currentDir !== TerminalFiles.rootDir) {
+      res.push('..');
+    }
     const dir = TerminalFiles.currentDir;
     dir.forEachDir(({ name }) => res.push(`${name}/`));
     dir.forEachFile(({ name }) => res.push(name));

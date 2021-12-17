@@ -6,7 +6,32 @@ export class LsParser extends AbstractParser {
   public static test(str: string): boolean {
     return /^ls(\s|$)/i.test(str);
   }
+  public static defaultFilter(str: string): boolean {
+    return !str.startsWith('.');
+  }
+  public static allFilter(): boolean {
+    return true;
+  }
+  public static almostAllFilter(str: string): boolean {
+    return str !== '.' && str !== '..';
+  }
   public static execute(state: CommandState) {
-    state.output = TerminalService.files.ls();
+    const {
+      parsedData: { flags = [] },
+    } = state;
+
+    let filter = LsParser.defaultFilter;
+    for (let i = 0, l = flags.length; i < l; i++) {
+      const flag = flags[i];
+
+      if (flag === '-a' || flag === '--all') {
+        filter = LsParser.allFilter;
+      }
+      if (flag === '-A' || flag === '--almost-all') {
+        filter = LsParser.almostAllFilter;
+      }
+    }
+
+    state.output = TerminalService.files.ls().filter(filter);
   }
 }

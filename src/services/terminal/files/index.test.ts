@@ -19,6 +19,6 @@ describe('TerminalFiles', () => {
     TerminalFiles.rootDir.addDir(new DirectoryStruct('1Dir'));
     TerminalFiles.rootDir.addDir(new DirectoryStruct('2Dir'));
     TerminalFiles.rootDir.addFile(new FileStruct('1.txt'));
-    expect(TerminalFiles.ls()).toEqual(['1Dir/', '2Dir/', '1.txt']);
+    expect(TerminalFiles.ls()).toEqual(['.', '1Dir/', '2Dir/', '1.txt']);
   });
 });

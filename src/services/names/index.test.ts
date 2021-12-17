@@ -11,7 +11,7 @@ describe('generateCoolName', () => {
   });
   it('cool name for file format', function () {
     expect(
-      /^[a-z\s]+_[a-z_]+\.[a-z]+$/.test(generateCoolName({ isDir: false }))
+      /^[a-z\s]+_[a-z_-]+\.[a-z]+$/.test(generateCoolName({ isDir: false }))
     ).toBe(true);
   });
 });
