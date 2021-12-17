@@ -2,9 +2,9 @@ import { AbstractParser } from '.';
 
 describe('AbstractParser', () => {
   it('AbstractParser.parse flags shoud work', () => {
-    expect(AbstractParser.parseFlags('command -a -b --some-flag')).toEqual([
+    expect(AbstractParser.parseFlags('command -a -B --some-flag')).toEqual([
       '-a',
-      '-b',
+      '-B',
       '--some-flag',
     ]);
   });

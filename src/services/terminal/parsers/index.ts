@@ -9,6 +9,6 @@ export class AbstractParser {
   }
   public static execute(_state: CommandState) {}
   public static parseFlags(str: string): string[] {
-    return (str.match(/\s--?([a-z0-9-]+)/gi) ?? []).map((f) => f.trim());
+    return (str.match(/\s--?([A-Za-z0-9-]+)/g) ?? []).map((f) => f.trim());
   }
 }
