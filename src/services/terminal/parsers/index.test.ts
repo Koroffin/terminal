@@ -8,6 +8,9 @@ describe('AbstractParser', () => {
       '--some-flag',
     ]);
   });
+  it('AbstractParser.parse flags without any flag', () => {
+    expect(AbstractParser.parseFlags('command')).toEqual([]);
+  });
   it('AbstractParser.test returns false by default', () => {
     expect(AbstractParser.test('command -a -b --some-flag')).toBe(false);
   });
