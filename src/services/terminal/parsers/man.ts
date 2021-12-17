@@ -3,12 +3,14 @@ import { CommandState } from 'Services/terminal/commandState';
 
 import historyJson from 'Services/terminal/man/history.json';
 import grepJson from 'Services/terminal/man/grep.json';
+import lsJson from 'Services/terminal/man/ls.json';
 
 export const MAN_ERROR = ['Cannot find man for that!'];
 
 const manHash: { [s: string]: string[] } = {
   history: historyJson.data,
   grep: grepJson.data,
+  ls: lsJson.data,
   ERROR: MAN_ERROR,
 };
 
