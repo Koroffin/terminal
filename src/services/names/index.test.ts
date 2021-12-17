@@ -6,7 +6,9 @@ describe('generateCoolName', () => {
   });
   it('cool name for directory format', function () {
     expect(
-      /^[A-Z][a-z]+\s[A-Z][A-Za-z\s]+$/.test(generateCoolName({ isDir: true }))
+      /^[A-Z][a-z]+\s[A-Z][A-Za-z\s\-]+$/.test(
+        generateCoolName({ isDir: true })
+      )
     ).toBe(true);
   });
   it('cool name for file format', function () {
