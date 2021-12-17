@@ -1,0 +1,27 @@
+{
+    "data": [
+        "NAME",
+        "      history - GNU History Library",
+        "",
+        "COPYRIGHT",
+        "      The GNU History Library is Copyright (C) 1989-2020 by the Free",
+        "      Software Foundation, Inc.",
+        "",
+        "DESCRIPTION",
+        "      Many programs read input from the user a line at a time.  The GNU",
+        "      History library is able to keep track of those lines, associate",
+        "      arbitrary data with each line, and utilize information from",
+        "      previous lines in composing new ones.",
+        "SYNTAX",
+        "      history",
+        "      history [n]",
+        "      history -c",
+        "KEY",
+        "  -c  Clear the history list. This can be combined with the other",
+        "      options to replace the history list completely.",
+        "  -d  offset",
+        "      Delete the history entry at position offset.",
+        "      offset should be specified as it appears when the history is displayed. ",
+        "With no options, display the history list with line numbers. Lines prefixed with with a '*' have been modified. An argument of n lists only the last n lines."
+    ]
+}
