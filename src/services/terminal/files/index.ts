@@ -40,14 +40,14 @@ export class TerminalFiles {
       TerminalFiles.rootDir.addDir(dir);
     }
   }
-  public static ls(): string[] {
+  public static ls(sortBy: keyof FileStruct = 'name'): string[] {
     const res: string[] = ['.'];
     if (this.currentDir !== TerminalFiles.rootDir) {
       res.push('..');
     }
     const dir = TerminalFiles.currentDir;
-    dir.forEachDir(({ name }) => res.push(`${name}/`));
-    dir.forEachFile(({ name }) => res.push(name));
+    dir.forEachDir(({ name }) => res.push(`${name}/`), sortBy);
+    dir.forEachFile(({ name }) => res.push(name), sortBy);
     return res;
   }
   public static reset() {
