@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutosizeInput should render correctly 1`] = `
+exports['AutosizeInput should render correctly 1'] = `
 <div>
   <input
     class="sc-bczRLJ ZLNSN"

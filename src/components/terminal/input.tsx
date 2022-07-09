@@ -73,7 +73,7 @@ export const Input: React.FC<InputProps> = ({ execute }) => {
         if (key === 'Tab') {
           evt.preventDefault();
           const pipeArr = target.value.split('|');
-          const lastPipe = pipeArr.pop();;
+          const lastPipe = pipeArr.pop();
           const lastPipeArr = lastPipe.split(' ');
           const lastPipeCommand = lastPipeArr.pop();
           const [ possibleValue ] = TerminalService.autocomplete(lastPipeCommand);

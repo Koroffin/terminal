@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Terminal should render correctly 1`] = `
+exports['Terminal should render correctly 1'] = `
 <div>
   <div
     class="sc-jSMfEi bQfMDu"
