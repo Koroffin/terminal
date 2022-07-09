@@ -10,6 +10,9 @@ export const DEFAULE_SUBFILES_COUNT = 3;
 export class TerminalFiles {
   public static rootDir: PrivateDirectoryStruct = new PrivateDirectoryStruct();
   private static currentDir: DirectoryStruct = TerminalFiles.rootDir;
+  public static get currentDirName(): string {
+    return this.currentDir.name;
+  }
   private static $makeDir(
     name: string = generateCoolName({ isDir: true }),
     files: FileStruct[] = []
@@ -49,6 +52,12 @@ export class TerminalFiles {
     dir.forEachDir(({ name }) => res.push(`${name}/`), sortBy);
     dir.forEachFile(({ name }) => res.push(name), sortBy);
     return res;
+  }
+  public static cd(dir: string) {
+    const dirStruct = TerminalFiles.currentDir.getDir(dir);
+    if (dirStruct) {
+      TerminalFiles.currentDir = dirStruct;
+    }
   }
   public static reset() {
     TerminalFiles.rootDir = new PrivateDirectoryStruct();

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Terminal should render correctly 1`] = `
+<div>
+  <div
+    class="sc-jSMfEi bQfMDu"
+    data-autotest-id="terminal-wrapper"
+  >
+    <div
+      class="sc-gsnTZi tugAn"
+    >
+      <div
+        class="sc-bczRLJ emMGHK"
+      >
+        $ 
+        <input
+          class="sc-hKMtZM bMwtCL sc-eCYdqJ jdWWWf"
+          data-autotest-id="autosize-input"
+        />
+        <div
+          class="sc-dkzDqf cUEhTp"
+          data-autotest-id="caret"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

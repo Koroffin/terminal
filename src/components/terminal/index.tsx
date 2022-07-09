@@ -30,7 +30,7 @@ export const Terminal: React.FC = () => {
   }, []);
 
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper data-autotest-id="terminal-wrapper" onClick={onClick}>
       {log.map((item) => (
         <Block key={item.id}>{item.value}</Block>
       ))}

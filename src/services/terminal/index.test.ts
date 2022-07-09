@@ -23,4 +23,8 @@ describe('TerminalService', () => {
     expect(spyFiles).toBeCalledTimes(1);
     expect(spyHistory).toBeCalledTimes(1);
   });
+  it('TerminalService.autocomplete should work', () => {
+    const res = TerminalService.autocomplete('s');
+    expect(res).toEqual(['sudo']);
+  });
 });

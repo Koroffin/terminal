@@ -4,9 +4,7 @@ import { CommandState } from 'Services/terminal/commandState';
 export const NO_PATTERN_ERROR = ['Pattern should be provided to grep'];
 
 export class GrepParser extends AbstractParser {
-  public static test(str: string): boolean {
-    return /^grep(\s|$)/i.test(str);
-  }
+  public static command = 'grep';
   public static parse(str: string): CommandState['parsedData'] {
     const patternMatch =
       str.match(/\s(?:'|")([^"']+)(?:'|")/i) ??

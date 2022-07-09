@@ -16,7 +16,12 @@ describe('HistoryParser', () => {
     expect(HistoryParser.parse('history').flags.length).toBe(0);
   });
   it('HistoryParser.parse with flag', () => {
-    expect(HistoryParser.parse('history -flag').flags).toEqual(['-flag']);
+    expect(HistoryParser.parse('history -flag').flags).toEqual([
+      '-f',
+      '-l',
+      '-a',
+      '-g',
+    ]);
   });
   it('HistoryParser.parse with n', () => {
     expect(HistoryParser.parse('history 5').n).toBe(5);

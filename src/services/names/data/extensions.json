@@ -1,9 +1,3 @@
 {
-    "data": [
-        "bmp",
-        "txt",
-        "json",
-        "png",
-        "log"
-    ]
+  "data": ["bmp", "txt", "json", "png", "log"]
 }

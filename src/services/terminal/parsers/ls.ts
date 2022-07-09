@@ -3,9 +3,7 @@ import { CommandState } from 'Services/terminal/commandState';
 import { TerminalService } from 'Services/terminal';
 
 export class LsParser extends AbstractParser {
-  public static test(str: string): boolean {
-    return /^ls(\s|$)/i.test(str);
-  }
+  public static command = 'ls';
   public static defaultFilter(str: string): boolean {
     return !str.startsWith('.');
   }

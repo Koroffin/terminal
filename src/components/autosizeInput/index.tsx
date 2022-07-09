@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Input } from './styles/input';
 
-const adjustInput = (input: HTMLInputElement) => {
+export const adjustInput = (input: HTMLInputElement) => {
   if (!input) {
     return;
   }
@@ -24,15 +24,16 @@ export const AutosizeInput: React.FC<React.HTMLProps<HTMLInputElement>> = (
   } = props;
 
   const onInputFn = useCallback(
-    (evt) => {
-      adjustInput(evt.target);
+    (evt: React.SyntheticEvent<HTMLInputElement>) => {
+      adjustInput(evt.currentTarget);
       onInput?.(evt);
     },
     [onInput]
   );
   const onChangeFn = useCallback(
-    (evt) => {
-      adjustInput(evt.target);
+    (evt: React.SyntheticEvent<HTMLInputElement>) => {
+      console.log("adjust", evt.currentTarget);
+      adjustInput(evt.currentTarget);
       onChange?.(evt);
     },
     [onChange]
@@ -49,6 +50,7 @@ export const AutosizeInput: React.FC<React.HTMLProps<HTMLInputElement>> = (
       onKeyDown={onKeyDown}
       onInput={onInputFn}
       onChange={onChangeFn}
+      data-autotest-id="autosize-input"
     />
   );
 };

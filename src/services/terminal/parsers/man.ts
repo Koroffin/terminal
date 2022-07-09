@@ -7,7 +7,7 @@ import lsJson from 'Services/terminal/man/ls.json';
 
 export const MAN_ERROR = ['Cannot find man for that!'];
 
-const manHash: { [s: string]: string[] } = {
+export const manHash: { [s: string]: string[] } = {
   history: historyJson.data,
   grep: grepJson.data,
   ls: lsJson.data,
@@ -16,9 +16,8 @@ const manHash: { [s: string]: string[] } = {
 
 export class ManParser extends AbstractParser {
   public static parsedName: string = null;
-  public static test(str: string): boolean {
-    return /^man\s([\S\s]+)$/i.test(str);
-  }
+  public static canBeSingleWord = false;
+  public static command = 'man';
   public static parse(str: string): CommandState['parsedData'] {
     const match = str.match(/^man\s([\S\s]+)$/i);
     if (match === null) {

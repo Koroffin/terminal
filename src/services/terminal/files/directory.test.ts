@@ -44,4 +44,28 @@ describe('DirectoryStruct', () => {
     const dir = new DirectoryStruct('1');
     expect(dir.isVisible).toBe(true);
   });
+  it('DirectoryStruct.hasDir should work', () => {
+    const dir = new DirectoryStruct('1');
+    dir.addDir(new DirectoryStruct('2'));
+    expect(dir.hasDir('2')).toBe(true);
+  });
+  it('DirectoryStruct.getDir should work', () => {
+    const dir = new DirectoryStruct('1');
+    dir.addDir(new DirectoryStruct('2'));
+    expect(dir.getDir('2')).toBeInstanceOf(DirectoryStruct);
+    expect(dir.getDir('2').name).toBe('2');
+  });
+  it('DirectoryStruct.hasFile should work', () => {
+    const dir = new DirectoryStruct('1');
+    dir.addFile(new FileStruct('2'));
+    expect(dir.hasFile('2')).toBe(true);
+  });
+  it('DirectoryStruct.getDir nested should work', () => {
+    const dir = new DirectoryStruct('1');
+    const subdir = new DirectoryStruct('2');
+    dir.addDir(subdir);
+    subdir.addDir(new DirectoryStruct('3'));
+    expect(dir.getDir('2/3')).toBeInstanceOf(DirectoryStruct);
+    expect(dir.getDir('2/3').name).toBe('3');
+  });
 });

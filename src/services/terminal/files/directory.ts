@@ -20,7 +20,23 @@ export class DirectoryStruct {
     this.directories.push(dir);
   }
   public hasDir(dirName: string): boolean {
-    return !!this.directories.find((d) => d.name === dirName);
+    return !!this.getDir(dirName);
+  }
+  public getDir(dirName: string): DirectoryStruct {
+    let res: DirectoryStruct = null;
+    const dirNameArr = dirName.split('/');
+    for (let i = 0, l = dirNameArr.length; i < l; i++) {
+      const dirName = dirNameArr[i];
+      if (res) {
+        res = res.directories.find((d) => d.name === dirName);
+      } else {
+        res = this.directories.find((d) => d.name === dirName);
+      }
+      if (!res) {
+        break;
+      }
+    }
+    return res;
   }
   public forEachDir(
     fn: (dir: DirectoryStruct) => void,

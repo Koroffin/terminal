@@ -1,33 +1,33 @@
-import { mount } from 'enzyme';
 import React from 'react';
-import { AutosizeInput } from '.';
+import { render, fireEvent } from '@testing-library/react';
+import { adjustInput, AutosizeInput } from './index';
 
-describe('<AutosizeInput />', () => {
-  it('<AutosizeInput /> default render', () => {
-    const component = mount(<AutosizeInput />);
-    expect(component.find('input').length).toBe(1);
+describe('AutosizeInput', () => {
+  it('should render correctly', () => {
+    const { container } = render(<AutosizeInput />);
+    expect(container).toMatchSnapshot();
   });
-  it('<AutosizeInput /> onChange and onInput hooks work', () => {
+  it('should call onChange when input is changed', () => {
     const onChange = jest.fn();
-    const onInput = jest.fn();
-    const component = mount(
-      <AutosizeInput onChange={onChange} onInput={onInput} />
-    );
-    const input = component.find('input');
-    input.simulate('change');
-    input.simulate('input');
-    expect(onChange).toBeCalledTimes(1);
-    expect(onInput).toBeCalledTimes(1);
+    const { getByTestId } = render(<AutosizeInput onChange={onChange} />);
+    const input = getByTestId('autosize-input');
+    fireEvent.change(input, { target: { value: 'test' } });
+    expect(onChange).toHaveBeenCalled();
   });
-  it('<AutosizeInput /> resize input on input and change', () => {
-    const component = mount(<AutosizeInput />);
-    const input = component.find('input');
-    const target = input.getDOMNode() as HTMLInputElement;
-    target.value = '123';
-    input.simulate('change', { target });
-    expect(target.style.width).toBe('3ch');
-    target.value = '1234';
-    input.simulate('input', { target });
-    expect(target.style.width).toBe('4ch');
+  it('should call adjustInput when input is changed', () => {
+    const { getByTestId } = render(<AutosizeInput />);
+    const input = getByTestId('autosize-input');
+    fireEvent.change(input, { target: { value: 'test' } });
+    expect(input.style.width).toBe('4ch');
+  });
+  it('should not call adjustInput if input is not defined', () => {
+    expect(adjustInput(undefined)).toBeUndefined();
+  });
+  it('should call onInput when input is changed', () => {
+    const onInput = jest.fn();
+    const { getByTestId } = render(<AutosizeInput onInput={onInput} />);
+    const input = getByTestId('autosize-input');
+    fireEvent.input(input, { target: { value: 'test' } });
+    expect(onInput).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,5 @@
 import { CommandState } from 'Services/terminal/commandState';
-import { ManParser, MAN_ERROR } from './man';
-import historyJson from 'Services/terminal/man/history.json';
+import { manHash, ManParser, MAN_ERROR } from './man';
 
 describe('ManParser', () => {
   it('ManParser.test return false', () => {
@@ -19,7 +18,7 @@ describe('ManParser', () => {
     const state = new CommandState();
     state.parsedData = { name: 'history' };
     ManParser.execute(state);
-    expect(state.output).toEqual(historyJson.data);
+    expect(state.output).toEqual(manHash.history);
   });
   it('ManParser.execute error', () => {
     const state = new CommandState();

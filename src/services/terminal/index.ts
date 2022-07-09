@@ -18,6 +18,9 @@ export class TerminalService {
     GrepParser,
     LsParser,
   ];
+  private static sanitize(str: string): string {
+    return str.replace(/\s+/g, ' ').trim();
+  }
   public static init() {
     TerminalService.files.generateDefaultTree();
   }
@@ -28,7 +31,7 @@ export class TerminalService {
   public static parse(str: string): string[] {
     TerminalService.history.add(str);
     const { parsers } = TerminalService;
-    const cleanStr = str.replace(/\s+/g, ' ').trim();
+    const cleanStr = TerminalService.sanitize(str);
     const commands = cleanStr.split('|').map((s) => s.trim());
     const state = new CommandState();
     for (let i = 0, l = commands.length; i < l; i++) {
@@ -42,5 +45,17 @@ export class TerminalService {
       }
     }
     return state.output;
+  }
+  public static autocomplete(str: string): string[] {
+    const { parsers } = TerminalService;
+    const cleanStr = TerminalService.sanitize(str);
+    const res: string[] = [];
+    for (let i = 0, l = parsers.length; i < l; i++) {
+      const { command } = parsers[i];
+      if (command.startsWith(cleanStr)) {
+        res.push(command);
+      }
+    }
+    return res.sort((a, b) => a.localeCompare(b));
   }
 }

@@ -3,9 +3,7 @@ import { TerminalService } from 'Services/terminal';
 import { CommandState } from 'Services/terminal/commandState';
 
 export class HistoryParser extends AbstractParser {
-  public static test(str: string): boolean {
-    return /^history(\s|$)/i.test(str);
-  }
+  public static command = 'history';
   public static parse(str: string): CommandState['parsedData'] {
     const nMatch = str.match(/^history\s([0-9]+)/i);
     const dMatch = str.match(/-d\s([0-9]+)/i);

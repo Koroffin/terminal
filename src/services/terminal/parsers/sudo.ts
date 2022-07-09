@@ -5,9 +5,7 @@ import { CommandState } from 'Services/terminal/commandState';
 export const SUDO_ERROR = ["No 'sudo' allowed yet!"];
 
 export class SudoParser extends AbstractParser {
-  public static test(str: string): boolean {
-    return /^sudo(\s|$)/i.test(str);
-  }
+  public static command = 'sudo';
   public static execute(state: CommandState) {
     state.output = SUDO_ERROR;
     state.status = -1;

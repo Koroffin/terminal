@@ -2,7 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Terminal } from './components/terminal';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle: any = createGlobalStyle`
   * {
     padding: 0;
     margin: 0;

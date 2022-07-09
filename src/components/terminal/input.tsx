@@ -24,6 +24,8 @@ export const Input: React.FC<InputProps> = ({ execute }) => {
       const caretPos = newValue.length;
       target.value = newValue;
       target.setSelectionRange(caretPos, caretPos);
+      const event = new Event('input', { bubbles: true });
+      target.dispatchEvent(event);
     },
     []
   );
@@ -68,6 +70,21 @@ export const Input: React.FC<InputProps> = ({ execute }) => {
             updateInputContent(target, TerminalService.history.next())
           );
         }
+        if (key === 'Tab') {
+          evt.preventDefault();
+          const pipeArr = target.value.split('|');
+          const lastPipe = pipeArr.pop();;
+          const lastPipeArr = lastPipe.split(' ');
+          const lastPipeCommand = lastPipeArr.pop();
+          const [ possibleValue ] = TerminalService.autocomplete(lastPipeCommand);
+          if (possibleValue !== undefined) {
+            lastPipeArr.push(possibleValue);
+            pipeArr.push(lastPipeArr.join(' '));
+            requestAnimationFrame(() =>
+              updateInputContent(target, `${pipeArr.join('|')} `)
+            );
+          }
+        }
         requestAnimationFrame(() => updateCaretPosition(target));
       }
     },
@@ -86,7 +103,9 @@ export const Input: React.FC<InputProps> = ({ execute }) => {
           onKeyDown={onKeyDown}
           autoFocus
         />
-        {isFocused && <Caret position={caretPosition} />}
+        {isFocused && (
+          <Caret position={caretPosition} data-autotest-id="caret" />
+        )}
       </Flex>
     </Block>
   );
