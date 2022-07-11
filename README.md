@@ -7,6 +7,5 @@
 - ls
 
 ## Upcoming features
-- Autocomplete on [TAB] key
 - Regular expressions in grep
 - cd, mkdir, touch commands for file system support

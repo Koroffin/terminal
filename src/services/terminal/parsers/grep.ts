@@ -17,15 +17,36 @@ export class GrepParser extends AbstractParser {
   }
   public static execute(state: CommandState) {
     const {
-      parsedData: { pattern },
+      parsedData: { pattern, flags = [] },
       output,
     } = state;
+
+    const options = {
+      ignoreCase: false,
+      match: 'all'
+    }
 
     if (!pattern) {
       state.output = NO_PATTERN_ERROR;
       return;
     }
 
-    state.output = output.filter((s) => s.indexOf(pattern) !== -1);
+    for (let i = 0, l = flags.length; i < l; i++) {
+      const flag = flags[i];
+      if (flag === '-i' || flag === '--ignore-case') {
+        options.ignoreCase = true;
+      }
+      if (flag === '-w' || flag === '--word-regexp') {
+        options.match = 'word';
+      }
+      if (flag === '-x' || flag === '--extended-regexp') {
+        options.match = 'line';
+      }
+    }
+
+    state.output = output.filter((s) => {
+      const updatedPattern = options.match === 'word' ? `\\b${pattern}\\b` : options.match === 'line' ? `^${pattern}$` : pattern;
+      return s.match(new RegExp(updatedPattern, options.ignoreCase ? 'i' : ''));
+    });
   }
 }

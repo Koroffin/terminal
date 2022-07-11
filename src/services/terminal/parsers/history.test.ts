@@ -38,6 +38,7 @@ describe('HistoryParser', () => {
     expect(state.output).toEqual(['1  command one', '2  command two']);
   });
   it('HistoryParser.execute with -c', () => {
+    const spy = jest.spyOn(TerminalService.history, 'reset');
     TerminalService.parse('command one');
     TerminalService.parse('command two');
     const state = new CommandState();
@@ -45,6 +46,7 @@ describe('HistoryParser', () => {
     HistoryParser.execute(state);
     expect(state.output).toEqual([]);
     expect(TerminalService.history.l).toBe(0);
+    expect(spy).toHaveBeenCalled();
   });
   it('HistoryParser.execute with n=1', () => {
     TerminalService.parse('command one');

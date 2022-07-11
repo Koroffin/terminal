@@ -32,7 +32,6 @@ export const AutosizeInput: React.FC<React.HTMLProps<HTMLInputElement>> = (
   );
   const onChangeFn = useCallback(
     (evt: React.SyntheticEvent<HTMLInputElement>) => {
-      console.log('adjust', evt.currentTarget);
       adjustInput(evt.currentTarget);
       onChange?.(evt);
     },

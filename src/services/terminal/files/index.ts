@@ -42,6 +42,11 @@ export class TerminalFiles {
 
       TerminalFiles.rootDir.addDir(dir);
     }
+
+    for (let j = 0; j < DEFAULT_FILE_COUNT; j++) {
+      const file = TerminalFiles.$makeFile();
+      TerminalFiles.rootDir.addFile(file);
+    }
   }
   public static ls(sortBy: keyof FileStruct = 'name'): string[] {
     const res: string[] = ['.'];

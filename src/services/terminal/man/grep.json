@@ -17,6 +17,16 @@
     "",
     "      In  addition, the variant programs egrep and fgrep are the same as",
     "      grep -E and grep -F, respectively.  These variants are deprecated,",
-    "      but are provided for backward compatibility."
+    "      but are provided for backward compatibility.",
+    "OPTIONS",
+    "      -w, --word-regexp",
+    "              Select only those lines containing matches that form  whole",
+    "              words.  A word is a sequence of letters, digits, or underscores.",
+    "      -x, --line-regexp",
+    "              Select only those lines containing matches that form  whole",
+    "              lines.  A line is a sequence of characters terminated by",
+    "              a newline character.",
+    "      -i, --ignore-case",
+    "              Ignore case distinctions in both PATTERNS and the files."
   ]
 }
