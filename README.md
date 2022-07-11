@@ -7,5 +7,4 @@
 - ls
 
 ## Upcoming features
-- Regular expressions in grep
 - cd, mkdir, touch commands for file system support
