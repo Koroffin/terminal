@@ -1,5 +1,9 @@
 # Patchnotes
 
+## v 1.1.1
+
+- Released `Regular expressions in grep`
+
 ## v 1.1.0
 
 - Released `Autocomplete on [TAB] key`

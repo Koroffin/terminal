@@ -1,6 +1,6 @@
 {
   "name": "advent.koroffin.com",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "src/server.js",
   "scripts": {
